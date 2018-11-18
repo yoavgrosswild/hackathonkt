@@ -43,14 +43,10 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    def coroutines = '0.26.1'
+    def coroutines = '1.0.0'
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 }
 
 
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
-}
+
