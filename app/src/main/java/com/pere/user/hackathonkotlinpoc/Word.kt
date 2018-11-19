@@ -9,4 +9,4 @@ import androidx.room.PrimaryKey
  */
 
 @Entity(tableName = "words")
-data class Word(@PrimaryKey @ColumnInfo(name = "word") val word : String)
+data class Word(@PrimaryKey @ColumnInfo(name = "word") val word: String)

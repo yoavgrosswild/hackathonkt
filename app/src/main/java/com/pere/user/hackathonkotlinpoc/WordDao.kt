@@ -12,7 +12,7 @@ import androidx.room.Query
 interface WordDao {
 
     @Query("select * from words order by word asc")
-    fun getAllWords() : LiveData<List<Word>>
+    fun getAllWords(): LiveData<List<Word>>
 
     @Insert
     fun insert(word: Word)

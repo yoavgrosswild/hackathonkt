@@ -16,36 +16,38 @@ import kotlinx.coroutines.launch
 @Database(entities = [Word::class], version = 1)
 public abstract class WordRoomDatabase : RoomDatabase() {
 
-    abstract fun wordDao() : WordDao
+    abstract fun wordDao(): WordDao
 
 
     companion object {
 
-        private var INSTANCE : WordRoomDatabase? = null
+        private var INSTANCE: WordRoomDatabase? = null
 
-        fun getDatabase(context: Context,
-                        scope : CoroutineScope
+        fun getDatabase(
+            context: Context,
+            scope: CoroutineScope
         )
                 : WordRoomDatabase {
-               val tempinstance = INSTANCE
-                if(tempinstance != null) {
-                    return tempinstance
-                }
-                synchronized(this){
-                    val instance = Room.databaseBuilder(context.applicationContext
-                    ,WordRoomDatabase::class.java,
-                        "Word_database"
-                        )
-                        .addCallback(WordDatabaseCallback(scope))
-                        .build()
-                    INSTANCE = instance
-                    return instance
-                }
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext
+                    , WordRoomDatabase::class.java,
+                    "Word_database"
+                )
+                    .addCallback(WordDatabaseCallback(scope))
+                    .build()
+                INSTANCE = instance
+                return instance
+            }
         }
     }
 
     private class WordDatabaseCallback(
-        private val scope : CoroutineScope
+        private val scope: CoroutineScope
 
     ) : RoomDatabase.Callback() {
 
@@ -58,7 +60,7 @@ public abstract class WordRoomDatabase : RoomDatabase() {
             }
         }
 
-        fun populateDatabase(wordDao : WordDao) {
+        fun populateDatabase(wordDao: WordDao) {
             wordDao.deleteAll()
             var word = Word("Hello")
             wordDao.insert(word)
